@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 import {nanoid} from 'nanoid';
 
-const Form = ({setUserData, setToggle}) => {
- 
-  const [formData, setFormData] = useState({
+const Form = ({userData,setUserData, setToggle,setUpdate,update}) => {
+  console.log(userData)
+  const [formData, setFormData] = useState(update ? update : {
       name:'',
       email:'',
       password:''
@@ -17,13 +17,29 @@ const Form = ({setUserData, setToggle}) => {
   const handleSubmit = (e) => {
 
       e.preventDefault();
-      setUserData((prev) => [...prev,formData]);
+      if(update?.id){
+        const id = update.id;
+        let arr = userData.map((user) => {
+          return user.id === id 
+           ? {...user,...formData,id:user.id}
+           :user
+        });
+        setUserData(arr);
+        localStorage.setItem("userArr",(JSON.stringify(arr)));
+      }
+      else{
+        let arr = [...userData,formData]
+        setUserData(arr);
+        localStorage.setItem("userArr",JSON.stringify(arr));
+      }
+      
       setFormData({
          name:'',
          email:'',
          password:''
       });
       setToggle(false);
+      setUpdate({});
   }
   
   return (
