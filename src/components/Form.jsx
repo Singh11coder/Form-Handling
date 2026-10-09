@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {nanoid} from 'nanoid';
 
-const Form = ({setUserData}) => {
+const Form = ({setUserData, setToggle}) => {
  
   const [formData, setFormData] = useState({
       name:'',
@@ -15,8 +15,15 @@ const Form = ({setUserData}) => {
   }
 
   const handleSubmit = (e) => {
+
       e.preventDefault();
-      setUserData((prev) => [...prev,formData]);     
+      setUserData((prev) => [...prev,formData]);
+      setFormData({
+         name:'',
+         email:'',
+         password:''
+      });
+      setToggle(false);
   }
   
   return (
@@ -29,6 +36,7 @@ const Form = ({setUserData}) => {
            className="flex flex-col items-center gap-20 text-4xl border border-white py-12 px-20 rounded-4xl">
             
            <input 
+             value={formData.name}
              name="name"
              onChange={(e) => handleFormData(e)}
              className="w-[650px] h-[80px] border border-white px-4" 
@@ -36,6 +44,7 @@ const Form = ({setUserData}) => {
            />
 
            <input 
+             value={formData.email}
              name="email"
              onChange={(e) => handleFormData(e)}
              className="w-[650px] h-[80px] border border-white px-4" 
@@ -44,6 +53,7 @@ const Form = ({setUserData}) => {
            />
 
            <input 
+             value={formData.password}
              name="password"
              onChange={(e) => handleFormData(e)}
              className="w-[650px] h-[80px] border border-white px-4"
@@ -52,7 +62,7 @@ const Form = ({setUserData}) => {
             />
 
            <button 
-             onClick={(e)=>handleSubmit(e)}
+             onClick={(e)=> handleSubmit(e)}
              className="bg-blue-600 w-[200px] py-2 rounded-xl cursor-pointer" 
            >Submit</button>
         </form>

@@ -23,7 +23,7 @@ const App = () => {
           
           </div>
         : <div>
-           <Form setUserData={setUserData}/>
+           <Form setUserData={setUserData} setToggle={setToggle}/>
           </div>
        }
        
