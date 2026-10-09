@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {nanoid} from 'nanoid';
 
 const Form = ({setUserData}) => {
  
@@ -10,14 +11,14 @@ const Form = ({setUserData}) => {
   
   const handleFormData = (e) => {
       let {name,value} = e.target;
-      setFormData({...formData,[name]:value})
+      setFormData({...formData,[name]:value,id:nanoid()})
   }
 
   const handleSubmit = (e) => {
       e.preventDefault();
       setUserData((prev) => [...prev,formData]);     
   }
-
+  
   return (
     <div className="flex justify-center flex-col items-center py-[5%]  border border-white">
         <div className="mb-13  bg-blue-700 rounded-2xl">

@@ -1,7 +1,9 @@
 import React from 'react'
 
-const Usercard = ({data}) => {
+const Usercard = ({data,handleDelete}) => {
   console.log(data,"UserData");
+
+   
   return (
     <div className="h-[20%] w-[24%] bg-gray-600 py-5 px-10 text-white text-2xl rounded-3xl">
         
@@ -18,8 +20,12 @@ const Usercard = ({data}) => {
         </div>
 
         <div className="flex justify-between text-white py-2">
-             <button className='bg-cyan-600 py-2 px-4 cursor-pointer rounded-2xl'>Update</button>
-             <button  className='bg-red-600 py-2 px-4 cursor-pointer rounded-2xl'>Delete</button>
+           <button 
+
+             className='bg-cyan-600 py-2 px-4 cursor-pointer rounded-2xl'>Update</button>
+           <button  
+           onClick={() => handleDelete(data.id)}
+           className='bg-red-600 py-2 px-4 cursor-pointer rounded-2xl'>Delete</button>
         </div>
   
     </div>

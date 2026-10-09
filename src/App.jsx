@@ -6,7 +6,11 @@ import Form from './components/Form';
 const App = () => {
   const [userData, setUserData] = useState([]);
   const [toggle, setToggle] = useState(false);
-  console.log(userData,"App.jsx");
+  
+  const handleDelete = (id) => {
+     console.log(id);
+     setUserData((prev) => prev.filter((p) => p.id!=id));
+  }
   return (
     <div className="bg-black h-full w-full text-white ">
        <Navbar toggle={toggle} setToggle={setToggle}/>
@@ -14,7 +18,7 @@ const App = () => {
        {!toggle 
         ? <div className='py-10 px-10 flex gap-5 flex-wrap'>
            {userData.map((data) =>{
-                return <Usercard data={data}/>
+                return <Usercard data={data} handleDelete={handleDelete}/>
            })}
           
           </div>
